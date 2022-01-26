@@ -1,0 +1,12 @@
+mysql:
+  address:
+  port: 3306
+  dbname:
+  username:
+  password: 
+redis:
+  address: 127.0.0.1
+  port: 6379
+  maxIdle: 8
+  maxActive: 0
+  idleTimeout: 100
