@@ -1,7 +1,7 @@
 /**
  * @Author: Ne-21
- * @Description:
- * @File:  bing
+ * @Description: 自动获取每日壁纸爬虫
+ * @File:  bingCrawler
  * @Version: 1.0.0
  * @Date: 2022/1/26 13:47
  */
