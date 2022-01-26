@@ -13,9 +13,9 @@ import (
 	"github.com/Olixn/Bing-Wallpaper-Server/config"
 	"github.com/Olixn/Bing-Wallpaper-Server/model"
 	"github.com/imroc/req"
+	"github.com/robfig/cron"
 	"gorm.io/gorm"
 	"log"
-	"time"
 )
 
 type BingCrawler struct {
@@ -27,11 +27,16 @@ func InitBingCrawler() {
 		MySql: config.MySQL,
 	}
 
-	go func() {
-		time.AfterFunc(60*time.Second, bingCrawler.Run)
-	}()
+	// 每分钟爬取一次
+	c := cron.New()
+	spec := "0 */1 * * * ?"
+	c.AddFunc(spec, func() {
+		bingCrawler.Start()
+	})
+	c.Start()
+	log.Printf("定时任务已启动！")
 }
-func (b *BingCrawler) Run() {
+func (b *BingCrawler) Start() {
 	get, err := req.Get("https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN")
 	if err != nil {
 		log.Printf("请求官方API出错: %v", err)
