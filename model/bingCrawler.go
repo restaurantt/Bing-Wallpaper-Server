@@ -22,4 +22,5 @@ type BingImages struct {
 type BingWallpaper struct {
 	gorm.Model
 	BingImages
+	View int `json:"view"`
 }

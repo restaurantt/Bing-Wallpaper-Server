@@ -29,7 +29,7 @@ func InitBingCrawler() {
 
 	// 每分钟爬取一次
 	c := cron.New()
-	spec := "0 */1 * * * ?"
+	spec := "0 0 */1 * * ?"
 	c.AddFunc(spec, func() {
 		bingCrawler.Start()
 	})
