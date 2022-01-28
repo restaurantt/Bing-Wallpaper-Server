@@ -18,6 +18,7 @@ import (
 type Config struct {
 	MySql *MySql
 	Redis *Redis
+	API   *API
 }
 
 type MySql struct {
@@ -34,6 +35,9 @@ type Redis struct {
 	MaxIdle     int    `yaml:"maxIdle"`
 	MaxActive   int    `yaml:"maxActive"`
 	IdleTimeout int    `yaml:"idleTimeout"`
+}
+type API struct {
+	Baseurl string `yaml:"baseurl"`
 }
 
 var AppConfig *Config

@@ -26,5 +26,6 @@ func RegisterRoute(r *gin.Engine) {
 	{
 		apiGroup.GET("/v1/getList", v1.GetWallpapersList)
 		apiGroup.PUT("/v1/view/:id", v1.View)
+		apiGroup.GET("/v1/download", v1.Download)
 	}
 }
