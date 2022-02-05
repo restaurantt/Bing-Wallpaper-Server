@@ -69,3 +69,35 @@ func Download(c *gin.Context) {
 	}
 	return
 }
+
+func Today(c *gin.Context) {
+	w := c.DefaultQuery("w", "1920")
+	h := c.DefaultQuery("h", "1080")
+	t := c.DefaultQuery("t", "jpg")
+
+	var bingWallpaper *model.BingWallpaper
+	var MySQL = config.MySQL
+	MySQL.Model(&model.BingWallpaper{}).Last(&bingWallpaper)
+
+	if t == "jpg" {
+		url := config.AppConfig.API.Baseurl + bingWallpaper.UrlBase + "_" + w + "x" + h + ".jpg"
+		imgData := utils.ReadImgData(url)
+		c.Header("Content-Type", "image/jpg")
+		_, err := c.Writer.Write(imgData)
+		if err != nil {
+			return
+		}
+	} else if t == "json" {
+		c.JSON(http.StatusOK, map[string]interface{}{
+			"status":    1,
+			"msg":       "success",
+			"url":       config.AppConfig.API.Baseurl + bingWallpaper.UrlBase + "_" + w + "x" + h + ".jpg",
+			"copyright": bingWallpaper.Copyright,
+			"date":      bingWallpaper.EndDate,
+		})
+	} else {
+		c.JSON(http.StatusBadGateway, nil)
+	}
+
+	return
+}
