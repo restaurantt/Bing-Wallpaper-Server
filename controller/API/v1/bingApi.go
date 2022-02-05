@@ -15,8 +15,10 @@ import (
 	"github.com/Olixn/Bing-Wallpaper-Server/utils"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
+	"math/rand"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 func GetWallpapersList(c *gin.Context) {
@@ -78,6 +80,44 @@ func Today(c *gin.Context) {
 	var bingWallpaper *model.BingWallpaper
 	var MySQL = config.MySQL
 	MySQL.Model(&model.BingWallpaper{}).Last(&bingWallpaper)
+
+	if t == "jpg" {
+		url := config.AppConfig.API.Baseurl + bingWallpaper.UrlBase + "_" + w + "x" + h + ".jpg"
+		imgData := utils.ReadImgData(url)
+		c.Header("Content-Type", "image/jpg")
+		_, err := c.Writer.Write(imgData)
+		if err != nil {
+			return
+		}
+	} else if t == "json" {
+		c.JSON(http.StatusOK, map[string]interface{}{
+			"status":    1,
+			"msg":       "success",
+			"url":       config.AppConfig.API.Baseurl + bingWallpaper.UrlBase + "_" + w + "x" + h + ".jpg",
+			"copyright": bingWallpaper.Copyright,
+			"date":      bingWallpaper.EndDate,
+		})
+	} else {
+		c.JSON(http.StatusBadGateway, nil)
+	}
+
+	return
+}
+
+func Random(c *gin.Context) {
+	w := c.DefaultQuery("w", "1920")
+	h := c.DefaultQuery("h", "1080")
+	t := c.DefaultQuery("t", "jpg")
+
+	var MySQL = config.MySQL
+	var total int64
+	MySQL.Model(&model.BingWallpaper{}).Count(&total)
+
+	rand.Seed(time.Now().Unix())
+	ranId := strconv.FormatInt(rand.Int63n(total)+1, 10)
+
+	var bingWallpaper *model.BingWallpaper
+	MySQL.Model(&model.BingWallpaper{}).Where("id = ?", ranId).Find(&bingWallpaper)
 
 	if t == "jpg" {
 		url := config.AppConfig.API.Baseurl + bingWallpaper.UrlBase + "_" + w + "x" + h + ".jpg"

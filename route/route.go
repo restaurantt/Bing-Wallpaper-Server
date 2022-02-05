@@ -28,5 +28,6 @@ func RegisterRoute(r *gin.Engine) {
 		apiGroup.PUT("/v1/view/:id", v1.View)
 		apiGroup.GET("/v1/download", v1.Download)
 		apiGroup.GET("/v1/today", v1.Today)
+		apiGroup.GET("/v1/random", v1.Random)
 	}
 }
