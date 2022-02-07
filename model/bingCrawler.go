@@ -11,7 +11,7 @@ package model
 import "gorm.io/gorm"
 
 type BingImages struct {
-	EndDate       string `json:"enddate"`
+	EndDate       string `json:"enddate" gorm:"index"`
 	Url           string `json:"url"`
 	UrlBase       string `json:"urlbase"`
 	Copyright     string `json:"copyright"`

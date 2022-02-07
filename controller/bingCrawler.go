@@ -61,7 +61,7 @@ func (b *BingCrawler) Start() {
 		return
 	}
 
-	if b.getByHsh(bingImages.Hsh) {
+	if b.getByDate(bingImages.EndDate) {
 		b.MySql.Model(&model.BingWallpaper{}).Create(&model.BingWallpaper{
 			BingImages: *bingImages,
 		})
@@ -72,9 +72,9 @@ func (b *BingCrawler) Start() {
 
 }
 
-func (b *BingCrawler) getByHsh(hsh string) bool {
+func (b *BingCrawler) getByDate(d string) bool {
 	var bingWallpaper *model.BingWallpaper
-	res := b.MySql.Model(&model.BingWallpaper{}).Where("hsh = ?", hsh).Find(&bingWallpaper)
+	res := b.MySql.Model(&model.BingWallpaper{}).Where("end_date = ?", d).Find(&bingWallpaper)
 	if res.RowsAffected > 0 {
 		return false
 	}

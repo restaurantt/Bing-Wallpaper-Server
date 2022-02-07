@@ -1,9 +1,9 @@
 mysql:
-  address:
+  address: 
   port: 3306
   dbname:
   username:
-  password: 
+  password:
 redis:
   address: 127.0.0.1
   port: 6379
