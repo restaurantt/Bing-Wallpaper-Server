@@ -1,5 +1,5 @@
 mysql:
-  address: 
+  address:
   port: 3306
   dbname:
   username:
@@ -11,4 +11,4 @@ redis:
   maxActive: 0
   idleTimeout: 100
 api:
-  baseurl: https://cn.bing.com/
+  baseurl: https://cn.bing.com

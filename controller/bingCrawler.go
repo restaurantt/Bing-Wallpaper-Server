@@ -27,10 +27,10 @@ func InitBingCrawler() {
 		MySql: config.MySQL,
 	}
 
-	// 每分钟爬取一次
+	// 凌晨1点爬取
 	c := cron.New()
-	// spec := "0 0 */1 * * ?"
-	spec := "0 */1 * * * ?"
+	spec := "0 0 1 * * ? "
+	// spec := "0 */1 * * * ?"
 	c.AddFunc(spec, func() {
 		bingCrawler.Start()
 	})
@@ -38,7 +38,7 @@ func InitBingCrawler() {
 	log.Printf("定时任务已启动！")
 }
 func (b *BingCrawler) Start() {
-	get, err := req.Get(config.AppConfig.API.Baseurl + "HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN")
+	get, err := req.Get(config.AppConfig.API.Baseurl + "/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN")
 	if err != nil {
 		log.Printf("请求官方API出错: %v", err)
 		return

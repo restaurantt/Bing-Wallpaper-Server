@@ -4,7 +4,7 @@
 - 在配置好Golang的环境下，双击build.bat
 
 ## 如何在Linux服务器上运行
-- 上传编译好的文件(main)到你所需要运行的目录（例如：www/wwwroot/bing.gocos.cn/server）
+- 上传编译好的文件夹(server)到你所需要运行的目录（例如：www/wwwroot/bing.gocos.cn/server）并配置server文件夹中的`config.yaml`
 - 在服务器上安装screen，CentOS执行`yum install screen`，Debian/Ubuntu执行`apt-get install screen`
 - 用screen新建一个会话`screen -S bing-server`
 - 在新会话中cd到运行目录`cd www/wwwroot/bing.gocos.cn/server`
