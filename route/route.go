@@ -9,9 +9,10 @@
 package route
 
 import (
-	v1 "github.com/Olixn/Bing-Wallpaper-Server/controller/API/v1"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	v1 "github.com/restaurantt/Bing-Wallpaper-Server/controller/API/v1"
 )
 
 func RegisterRoute(r *gin.Engine) {

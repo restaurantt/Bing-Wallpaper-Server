@@ -9,11 +9,11 @@
 package main
 
 import (
-	"github.com/Olixn/Bing-Wallpaper-Server/config"
-	"github.com/Olixn/Bing-Wallpaper-Server/controller"
-	"github.com/Olixn/Bing-Wallpaper-Server/middleware"
-	"github.com/Olixn/Bing-Wallpaper-Server/route"
 	"github.com/gin-gonic/gin"
+	"github.com/restaurantt/Bing-Wallpaper-Server/config"
+	"github.com/restaurantt/Bing-Wallpaper-Server/controller"
+	"github.com/restaurantt/Bing-Wallpaper-Server/middleware"
+	"github.com/restaurantt/Bing-Wallpaper-Server/route"
 )
 
 func init() {

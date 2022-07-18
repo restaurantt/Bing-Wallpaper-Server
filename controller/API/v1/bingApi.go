@@ -10,15 +10,16 @@ package v1
 
 import (
 	"fmt"
-	"github.com/Olixn/Bing-Wallpaper-Server/config"
-	"github.com/Olixn/Bing-Wallpaper-Server/model"
-	"github.com/Olixn/Bing-Wallpaper-Server/utils"
-	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
 	"math/rand"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/restaurantt/Bing-Wallpaper-Server/config"
+	"github.com/restaurantt/Bing-Wallpaper-Server/model"
+	"github.com/restaurantt/Bing-Wallpaper-Server/utils"
+	"gorm.io/gorm"
 )
 
 func GetWallpapersList(c *gin.Context) {

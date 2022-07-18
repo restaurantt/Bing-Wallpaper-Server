@@ -10,11 +10,12 @@ package config
 
 import (
 	"fmt"
-	"github.com/Olixn/Bing-Wallpaper-Server/model"
 	"log"
+
+	"github.com/restaurantt/Bing-Wallpaper-Server/model"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
-import "gorm.io/gorm"
-import "gorm.io/driver/mysql"
 
 var MySQL *gorm.DB
 

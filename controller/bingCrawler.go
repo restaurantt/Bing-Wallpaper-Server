@@ -10,12 +10,13 @@ package controller
 
 import (
 	"encoding/json"
-	"github.com/Olixn/Bing-Wallpaper-Server/config"
-	"github.com/Olixn/Bing-Wallpaper-Server/model"
+	"log"
+
 	"github.com/imroc/req"
+	"github.com/restaurantt/Bing-Wallpaper-Server/config"
+	"github.com/restaurantt/Bing-Wallpaper-Server/model"
 	"github.com/robfig/cron"
 	"gorm.io/gorm"
-	"log"
 )
 
 type BingCrawler struct {
